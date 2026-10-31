@@ -1,5 +1,5 @@
 'use strict';
-const githubPages=location.hostname==='coldhandsakacaio.github.io',apiBase=githubPages?'https://eucar-limpeza-protege.caiohenriquedemorais.chatgpt.site':'';
+const githubPages=['coldhandsakacaio.github.io','eucar-limpeza.github.io'].includes(location.hostname),apiBase=githubPages?'https://eucar-limpeza-protege.caiohenriquedemorais.chatgpt.site':'';
 let githubToken=githubPages?(sessionStorage.getItem('eucar-session')||''):'';
 const asset=path=>path?.startsWith('/api/images/')?apiBase+path:path;
 

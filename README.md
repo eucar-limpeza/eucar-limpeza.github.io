@@ -25,3 +25,7 @@ A proprietaria pode substituir o acesso inicial em Acesso e seguranca. A palavra
 - npm run dev -- --port 4174; segredos locais em .dev.vars (ignorado).
 - Publicar com o fluxo Sites, preservando .openai/hosting.json. A base local e os seus dados de teste nao sao publicados.
 - Dados pessoais podem ser removidos pela proprietaria nos pedidos; a eliminacao tambem altera os relatorios.
+
+## Endereco da empresa
+Site publico: https://eucar-limpeza.github.io/
+Repositorio principal: https://github.com/eucar-limpeza/eucar-limpeza.github.io

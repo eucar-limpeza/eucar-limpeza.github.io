@@ -32,10 +32,12 @@ test('protected management, authoritative prices, booking conflicts, schedule ch
  assert.equal((await req('/admin/service/'+svc.id,'DELETE')).status,200);assert.ok(!(await(await req('/public')).json()).services.some(x=>x.id===svc.id),'seed must not restore deleted services');
  await req('/admin/bookings/'+saved.id,'DELETE');assert.equal((await(await req('/admin/data')).json()).bookings.length,0);
  await req('/admin/logout','POST');assert.equal((await req('/admin/data')).status,401);
- const cross=(path,method='GET',body,token='')=>api(new Request('https://eucar.test/api'+path,{method,headers:{Origin:'https://coldhandsakacaio.github.io',Authorization:token?'Bearer '+token:''},body:body?JSON.stringify(body):undefined}),env);
- const preflight=await cross('/admin/data','OPTIONS');assert.equal(preflight.status,204);assert.equal(preflight.headers.get('Access-Control-Allow-Origin'),'https://coldhandsakacaio.github.io');
+ for(const origin of ['https://coldhandsakacaio.github.io','https://eucar-limpeza.github.io']){
+ const cross=(path,method='GET',body,token='')=>api(new Request('https://eucar.test/api'+path,{method,headers:{Origin:origin,Authorization:token?'Bearer '+token:''},body:body?JSON.stringify(body):undefined}),env);
+ const preflight=await cross('/admin/data','OPTIONS');assert.equal(preflight.status,204);assert.equal(preflight.headers.get('Access-Control-Allow-Origin'),origin);
  const remoteLogin=await cross('/login','POST',{email:'owner@example.com',password:'test-only-long-password'});const {token}=await remoteLogin.json();assert.match(token,/^[a-f0-9]{64}$/);
  assert.equal((await cross('/admin/data','GET',undefined,token)).status,200);assert.equal((await cross('/admin/data')).status,401);
  await cross('/admin/logout','POST',undefined,token);assert.equal((await cross('/admin/data','GET',undefined,token)).status,401);
+ }
  assert.deepEqual(available(hours,'2026-02-31'),[]);sql.close();
 });
