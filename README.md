@@ -17,7 +17,7 @@ A proprietaria pode substituir o acesso inicial em Acesso e seguranca. A palavra
 
 ## Desenvolvimento e publicacao
 - GitHub Pages publica a pasta public automaticamente em cada push na branch main, pelo workflow pages.yml. Configurar Settings > Pages > Source como GitHub Actions.
-- No github.io, a API continua hospedada em https://eucar-limpeza-protege.perkychair15.chatgpt.site. Reservas, imagens e gestao usam a mesma base. GitHub Pages sozinho nao executa o servidor nem guarda pedidos.
+- No github.io, a API continua hospedada em https://eucar-limpeza-protege.caiohenriquedemorais.chatgpt.site. Reservas, imagens e gestao usam a mesma base. GitHub Pages sozinho nao executa o servidor nem guarda pedidos.
 - O acesso administrativo no github.io usa um token de sessao de 8 horas, guardado apenas no sessionStorage da aba, enviado no cabecalho Authorization. O servidor permite essa origem explicitamente; no dominio original continua a usar cookie HttpOnly.
 - Node >=22.13; npm install:ci.
 - npm run db:generate para alteracoes de esquema. Preservar as migracoes ja aplicadas.
